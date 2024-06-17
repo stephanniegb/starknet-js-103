@@ -135,6 +135,8 @@ export default function Home() {
 
         if (res) {
           const value = useStringFromByteArray({ byteArray: res });
+          console.log(res);
+
           setFormResults({
             ...formResults,
             symbolResult: value,
