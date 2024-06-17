@@ -116,10 +116,9 @@ export default function Home() {
         const res = await contract.name();
 
         if (res) {
-          const value = useStringFromByteArray({ byteArray: res });
           setFormResults({
             ...formResults,
-            nameResult: value,
+            nameResult: res,
           });
         }
       } catch (error) {
@@ -132,16 +131,11 @@ export default function Home() {
       const contract = new Contract(CONTRACT_ABI, CONTRACT_ADDRESS, provider);
       try {
         const res = await contract.symbol();
-
         if (res) {
-          const value = useStringFromByteArray({ byteArray: res });
-          console.log(res);
-
           setFormResults({
             ...formResults,
-            symbolResult: value,
+            symbolResult: res,
           });
-          console.log(value);
         }
       } catch (error) {
         console.log(error);
@@ -271,6 +265,42 @@ export default function Home() {
         <div>
           <div className="w-full bg-yellow-100 flex flex-col rounded-lg border-solid border-2 border-black">
             <div className="flex justify-between items-center px-10 pt-5 w-full">
+              <span>Name</span>
+            </div>
+            <div className="grid  grid-rows-[1fr] overflow-hidden px-10 py-5">
+              <div className="overflow-hidden flex flex-col">
+                <div className="flex flex-col gap-8">
+                  <button onClick={getName} className="text-start button">
+                    Query
+                  </button>
+                  <p>{formResults.nameResult}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="w-full bg-yellow-100 flex flex-col rounded-lg border-solid border-2 border-black">
+            <div className="flex justify-between items-center px-10 pt-5 w-full">
+              <span>Symbol</span>
+            </div>
+            <div className="grid  grid-rows-[1fr] overflow-hidden px-10 py-5">
+              <div className="overflow-hidden flex flex-col">
+                <div className="flex flex-col gap-8">
+                  <button onClick={getSymbol} className="text-start button">
+                    Query
+                  </button>
+                  <p>{formResults.symbolResult}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="w-full bg-yellow-100 flex flex-col rounded-lg border-solid border-2 border-black">
+            <div className="flex justify-between items-center px-10 pt-5 w-full">
               <span>Total supply</span>
             </div>
             <div className="grid  grid-rows-[1fr] overflow-hidden px-10 py-5">
@@ -301,42 +331,6 @@ export default function Home() {
                     Query
                   </button>
                   <p>{formResults.decimalResult}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div className="w-full bg-yellow-100 flex flex-col rounded-lg border-solid border-2 border-black">
-            <div className="flex justify-between items-center px-10 pt-5 w-full">
-              <span>Symbol</span>
-            </div>
-            <div className="grid  grid-rows-[1fr] overflow-hidden px-10 py-5">
-              <div className="overflow-hidden flex flex-col">
-                <div className="flex flex-col gap-8">
-                  <button onClick={getSymbol} className="text-start button">
-                    Query
-                  </button>
-                  <p>{formResults.symbolResult}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div className="w-full bg-yellow-100 flex flex-col rounded-lg border-solid border-2 border-black">
-            <div className="flex justify-between items-center px-10 pt-5 w-full">
-              <span>Name</span>
-            </div>
-            <div className="grid  grid-rows-[1fr] overflow-hidden px-10 py-5">
-              <div className="overflow-hidden flex flex-col">
-                <div className="flex flex-col gap-8">
-                  <button onClick={getName} className="text-start button">
-                    Query
-                  </button>
-                  <p>{formResults.nameResult}</p>
                 </div>
               </div>
             </div>
